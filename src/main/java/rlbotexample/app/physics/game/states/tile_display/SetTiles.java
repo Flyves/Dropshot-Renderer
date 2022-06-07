@@ -1,35 +1,21 @@
 package rlbotexample.app.physics.game.states.tile_display;
 
+import rlbotexample.app.physics.game.states.FrameData;
 import rlbotexample.app.physics.state_setter.BallStateSetter;
 import rlbotexample.dynamic_objects.DataPacket;
 import util.state_machine.State;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class SetTiles implements State {
+    private static final int MIN_DELAY = 5000;
+
     private long timeToElapse;
 
     @Override
     public void start(DataPacket input) {
-        timeToElapse = System.currentTimeMillis() + 4500;
+        timeToElapse = System.currentTimeMillis() + MIN_DELAY;
         BallStateSetter.setIsBackgroundPositionEnabled(true);
 
-        final List<Integer> remainingIndexes = new ArrayList<>();
-
-        for(int i = 0; i < 140; i++) {
-            remainingIndexes.add(i);
-        }
-        for(int i = 0; i < 140; i++) {
-            int id1 = (int)(Math.random()*140);
-            int id2 = (int)(Math.random()*140);
-            int value1 = remainingIndexes.get(id1);
-            int value2 = remainingIndexes.get(id2);
-            remainingIndexes.set(id1, value2);
-            remainingIndexes.set(id2, value1);
-        }
-
-        BallStateSetter.tileIndexesToBreak.addAll(remainingIndexes);
+        BallStateSetter.tileIndexesToBreak.addAll(FrameData.currentFrame);
     }
 
     @Override
@@ -44,7 +30,7 @@ public class SetTiles implements State {
 
     @Override
     public State next(DataPacket input) {
-        if(minResetTimeElapsed() && BallStateSetter.tileIndexesToBreak.isEmpty()) {
+        if(minResetTimeElapsed() && BallStateSetter.tileIndexesToBreak.isEmpty() && !FrameData.isQueryingNextFrame) {
             return new TakeScreenshot();
         }
         return this;

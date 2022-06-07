@@ -23,16 +23,20 @@ import time
 
 from app.rl_keepalive_states import CloseEverything
 from app.window_process_monitor import WindowMonitor
+from util.logging.logging import ConsoleLogger
+from util.network.connection.connection_handler import ServerHandler
 from util.state_machine.state_machine import StateMachine
 
 
 def main():
     start_time = time.time()
-    sm = StateMachine(CloseEverything())
+    rl_sustainer = StateMachine(CloseEverything())
+    server_handler = ServerHandler(ConsoleLogger())
     while True:
         time.sleep(0.5 - ((time.time() - start_time) % 0.5))
         WindowMonitor.update()
-        sm.exec(None)
+        server_handler.update()
+        rl_sustainer.exec(server_handler)
 
 
 # Press the green button in the gutter to run the script.

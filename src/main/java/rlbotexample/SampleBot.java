@@ -16,9 +16,11 @@ import rlbotexample.dynamic_objects.DataPacket;
 import rlbotexample.generic_bot.output.BotOutput;
 import rlbotexample.generic_bot.output.ControlsOutput;
 import util.game_constants.RlConstants;
+import util.network.Client;
 import util.renderers.IndexedRenderer;
 import util.renderers.RenderTasks;
 
+import java.io.IOException;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -63,6 +65,11 @@ public class SampleBot implements Bot {
 
         amountOfBotsRunning++;
         RenderTasks.init();
+        try {
+            Client.start();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static IndexedRenderer getNewIndexedRenderer() {

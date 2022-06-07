@@ -16,10 +16,10 @@ class WindowMonitor:
             if process_name not in WindowMonitor.active_window_names:
                 WindowMonitor.active_window_names.append(process_name)
                 WindowMonitor.created_windows.append(process_name)
-                print('+ ' + process_name)
+                # print('+ ' + process_name)
 
         for process_name in WindowMonitor.active_window_names:
             if process_name not in new_name_list:
                 WindowMonitor.active_window_names.remove(process_name)
                 WindowMonitor.killed_windows.append(process_name)
-                print('- ' + process_name)
+                # print('- ' + process_name)
