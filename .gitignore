@@ -5,3 +5,5 @@ build/
 __pycache__
 *.iml
 src/main/blender/
+*.png
+*.mp4
