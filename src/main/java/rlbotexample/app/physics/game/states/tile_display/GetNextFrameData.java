@@ -11,7 +11,7 @@ public class GetNextFrameData implements State {
     @Override
     public void start(DataPacket input) {
         if(FrameData.previousFrame == null) {
-            FrameData.nextFrame = FrameData.computeTileIndexesToBreak(Client.sendAndReceive("request-current-frame"));
+            FrameData.nextFrame = FrameData.computeTileIndexesToBreak(Client.sendAndReceive("request-next-frame"));
         }
         FrameData.previousFrame = FrameData.currentFrame;
         FrameData.currentFrame = FrameData.nextFrame;

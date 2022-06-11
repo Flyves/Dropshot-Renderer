@@ -23,6 +23,10 @@ RLBOT_PROCESS_NAME = "RLBot.exe"
 
 class CloseEverything(State):
 
+    def start(self, param):
+        param.scheduled_indexes.clear()
+        print('Restarting...')
+
     def exec(self, param):
         kill_process(RLBOT_PROCESS_NAME)
         kill_process(JAVA_SHELL_PROCESS_NAME)
@@ -80,6 +84,9 @@ class WaitForSteamToSettleDown(State):
 
 
 class StartRlBotRunPy(State):
+    def start(self, param):
+        print('Launching RLBot')
+
     def exec(self, param):
         os.startfile(RLBOT_LOCATION)
 
@@ -93,8 +100,12 @@ class WaitForRocketLeagueToStart(State):
     def __init__(self):
         self.end_time = time.time() + WaitForRocketLeagueToStart.TIMEOUT_TIME
 
+    def start(self, param):
+        print('Waiting for Rocket League to start...')
+
     def next(self, param):
         if self.rocketLeagueTimedOut():
+            print('Took too long.')
             return CloseEverything()
         if self.rocketLeagueCorrectlyStarted():
             return WaitForClientConnection()
@@ -113,7 +124,7 @@ def rocketLeagueCrashed():
 
 class WaitForClientConnection(State):
     def start(self, param):
-        print('waiting for client connection...')
+        print('Waiting for bot connection...')
 
     def next(self, param):
         if rocketLeagueCrashed():
@@ -128,7 +139,10 @@ class WaitForClientConnection(State):
 
 class RenderingLoop(State):
     def start(self, param):
-        print('running rendering process')
+        print('Running rendering process.')
+
+        param.has_to_restart = False
+
         hwnd = win32gui.FindWindow(None, 'Rocket League (64-bit, DX11, Cooked)')
         # set camera angle + position
         win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, 0x4A, 0)
@@ -145,6 +159,9 @@ class RenderingLoop(State):
         win32api.SendMessage(hwnd, win32con.WM_KEYUP, 0x48, 0)
 
     def next(self, param):
+        if param.has_to_restart:
+            param.has_to_restart = False
+            return CloseEverything()
         if rocketLeagueCrashed():
             return CloseEverything()
         return self

@@ -34,11 +34,11 @@ public class Client {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(in.next());
             return stringBuilder.toString();
-        } catch (IOException e) {
+        } catch (Exception e) {
             try {
                 Client.start();
                 return sendAndReceive(data);
-            } catch (IOException ex) {
+            } catch (Exception ex) {
                 throw new RuntimeException("Client.sendAndReceive: couldn't reconnect");
             }
         }

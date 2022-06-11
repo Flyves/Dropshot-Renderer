@@ -1,3 +1,4 @@
+import time
 from threading import Thread
 
 import jsonpickle
@@ -63,11 +64,14 @@ def cannotConnectToOtherPlayer(thread: Thread):
 
 
 class ConnectToOtherPlayer(State):
+    DELAY_BEFORE_HARD_RESTART = 60*5  # 5 minutes
+
     def __init__(self, communication_data: CommunicationData, logger: Logger):
         self.server = Server()
         self.communication_data = communication_data
         self.server_connection_thread = None
         self.logger = logger
+        self.timeout_time = time.time() + ConnectToOtherPlayer.DELAY_BEFORE_HARD_RESTART
 
     @overrides
     def start(self, param):
@@ -75,6 +79,11 @@ class ConnectToOtherPlayer(State):
         server_args = (self.communication_data.server_host, self.communication_data.server_port)
         self.server_connection_thread = Thread(target=self.server.start, args=server_args)
         self.server_connection_thread.start()
+
+    def exec(self, param):
+        # send hard-restart signal if we're stuck here
+        if self.timeout_time > time.time():
+            param.hast_to_restart = True
 
     @overrides
     def next(self, param):
@@ -96,13 +105,13 @@ class ConnectionEstablished(State):
     def start(self, param):
         param.is_connected = True
         param.server = self.server
-        self.logger.log('Connected to other player!')
+        self.logger.log('Connected to client.')
         self.logger.log('server host:', self.communication_data.server_host)
         self.logger.log('server port:', self.communication_data.server_port)
 
     @overrides
     def stop(self, param):
-        self.logger.log('Disconnected from other player!')
+        self.logger.log('Disconnected from client.')
 
     @overrides
     def next(self, param):
@@ -120,12 +129,13 @@ class TryReconnection(State):
     @overrides
     def start(self, param):
         param.is_connected = False
-        self.logger.log('Trying to reconnect to other player...')
+        self.logger.log('Trying to reconnect...')
         self.server = Server()
         self.server.set_reception_callback(param.receive_data)
         server_args = (self.communication_data.server_host, self.communication_data.server_port)
         server_connection_thread = Thread(target=self.server.start, args=server_args)
         server_connection_thread.start()
+        param.hast_to_restart = True
 
     @overrides
     def next(self, param):
