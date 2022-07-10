@@ -16,7 +16,8 @@ public class ResetTeamSide implements State {
 
     @Override
     public void start(DataPacket input) {
-        timeToElapse = System.currentTimeMillis() + 900;
+        timeToElapse = System.currentTimeMillis() + 1000;
+        BallStateSetter.tileIndexesToBreak.add(tileIndex);
         BallStateSetter.tileIndexesToBreak.add(tileIndex);
         BallStateSetter.tileIndexesToBreak.add(tileIndex);
         BallStateSetter.tileIndexesToBreak.add(tileIndex);

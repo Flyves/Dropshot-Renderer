@@ -9,7 +9,6 @@ import rlbot.gamestate.GameState;
 import rlbotexample.dropshot_tiles.DropshotTileLocations;
 import rlbotexample.dynamic_objects.ball.BallData;
 import rlbotexample.dynamic_objects.car.ExtendedCarData;
-import util.game_situation.GameStateHelper;
 import util.math.vector.Vector3;
 import util.resource_handling.cars.CarResourceHandler;
 import util.resource_handling.cars.PlayerIndex;

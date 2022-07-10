@@ -34,6 +34,8 @@ class ServerHandler:
             # frame_data[1] = (subframe index, image index)
             frame_data = self.compute_next_frame()
 
+            print("# " + str(frame_data[1]))
+
             self.send_frame_data(frame_data[0])
             self.scheduled_indexes.append(frame_data[1])
             print("done.")
@@ -82,7 +84,7 @@ class ServerHandler:
 
         if result == 1:
             frame_index = self.scheduled_indexes.pop(0)
-            im.save("video_data/" + str(frame_index[1]) + "." + str(frame_index[0]) + ".png")
+            im.save("video_data/" + str(frame_index[0]) + "." + str(frame_index[1]) + ".png")
             print("done.")
         else:
             print("failed.")

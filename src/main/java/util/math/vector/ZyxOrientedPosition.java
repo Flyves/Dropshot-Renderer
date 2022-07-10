@@ -1,6 +1,6 @@
 package util.math.vector;
 
-import rlbotexample.dynamic_objects.car.orientation.Orientation;
+import util.math.orientation.Orientation;
 
 import java.io.Serializable;
 

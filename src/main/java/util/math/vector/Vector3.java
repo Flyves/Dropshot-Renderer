@@ -4,7 +4,7 @@ import com.google.flatbuffers.FlatBufferBuilder;
 import rlbot.flat.Rotator;
 import rlbot.gamestate.DesiredRotation;
 import rlbot.gamestate.DesiredVector3;
-import rlbotexample.dynamic_objects.car.orientation.Orientation;
+import util.math.orientation.Orientation;
 import util.math.matrix.Matrix3By3;
 import util.shapes.Plane3D;
 

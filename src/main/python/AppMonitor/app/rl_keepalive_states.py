@@ -7,9 +7,9 @@ import win32gui
 
 from app.process_util import kill_app_with_name, kill_process
 from app.window_process_monitor import WindowMonitor
-from util.state_machine.state_machine import State, StateMachine
+from util.state_machine.state_machine import State
 
-JAVA_BOT_LOCATION = "C:\\Users\\Plads\\Documents\\GitHub\\Flyves\\BadAppleDropshot\\run-bot.bat"
+JAVA_BOT_LOCATION = "..\\..\\..\\..\\run-bot.bat"
 BAKKESMOD_LOCATION = "C:\\Program Files\\BakkesMod\\BakkesMod.exe"
 RLBOT_LOCATION = ".\\runpy.bat"
 
@@ -21,8 +21,8 @@ BAKKESMOD_APP_NAME = "BakkesModInjectorCpp"
 JAVA_SHELL_PROCESS_NAME = "cmd.exe"
 RLBOT_PROCESS_NAME = "RLBot.exe"
 
-class CloseEverything(State):
 
+class CloseEverything(State):
     def start(self, param):
         param.scheduled_indexes.clear()
         print('Restarting...')

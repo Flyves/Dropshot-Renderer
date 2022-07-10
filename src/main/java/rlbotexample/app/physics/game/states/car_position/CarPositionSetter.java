@@ -1,14 +1,13 @@
 package rlbotexample.app.physics.game.states.car_position;
 
-import rlbotexample.app.physics.PhysicsOfBossBattle;
+import rlbotexample.app.physics.ModifiedPhysics;
 import rlbotexample.dynamic_objects.DataPacket;
 import rlbotexample.dynamic_objects.car.ExtendedCarData;
-import rlbotexample.dynamic_objects.car.orientation.Orientation;
+import util.math.orientation.Orientation;
 import util.math.vector.OrientedPosition;
 import util.math.vector.Vector3;
 import util.resource_handling.cars.CarResourceHandler;
 import util.resource_handling.cars.PlayerAmount;
-import util.resource_handling.cars.PlayerIndex;
 import util.state_machine.State;
 
 import java.util.ArrayList;
@@ -34,8 +33,8 @@ public class CarPositionSetter implements State {
     @Override
     public void exec(DataPacket input) {
         final List<ExtendedCarData> cars = CarResourceHandler.dereferenceIndexes(input, carIndexes);
-        PhysicsOfBossBattle.setVelocity(new Vector3(), cars.get(0));
-        PhysicsOfBossBattle.setOrientedPosition(new OrientedPosition(
+        ModifiedPhysics.setVelocity(new Vector3(), cars.get(0));
+        ModifiedPhysics.setOrientedPosition(new OrientedPosition(
                 new Vector3(0, 0, 6000),
                 new Orientation(Vector3.Z_VECTOR.plus(new Vector3(0.00001, 0, 0)), Vector3.Y_VECTOR)),
                 cars.get(0));

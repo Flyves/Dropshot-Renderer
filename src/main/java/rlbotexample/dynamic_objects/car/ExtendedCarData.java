@@ -2,7 +2,7 @@ package rlbotexample.dynamic_objects.car;
 
 
 import rlbot.flat.PlayerInfo;
-import rlbotexample.dynamic_objects.car.orientation.Orientation;
+import util.math.orientation.Orientation;
 
 import java.util.Optional;
 

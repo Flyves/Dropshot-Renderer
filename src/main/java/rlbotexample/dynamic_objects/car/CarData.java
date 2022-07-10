@@ -1,6 +1,6 @@
 package rlbotexample.dynamic_objects.car;
 
-import rlbotexample.dynamic_objects.car.orientation.Orientation;
+import util.math.orientation.Orientation;
 import util.math.vector.Vector3;
 import util.shapes.HitBox;
 

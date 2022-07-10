@@ -1,16 +1,10 @@
 package rlbotexample.app.physics.state_setter;
 
-import rlbot.flat.GameTickPacket;
 import rlbot.gamestate.*;
 import rlbotexample.dynamic_objects.DataPacket;
-import rlbotexample.dynamic_objects.car.ExtendedCarData;
-import util.discrete_functions.ExponentialSmoother3D;
-import util.game_situation.GameStateHelper;
-import util.math.vector.Ray3;
+import util.state_setting.GameStateHelper;
 import util.math.vector.Vector3;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 public class BallStateSetter {

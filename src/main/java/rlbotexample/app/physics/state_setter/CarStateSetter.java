@@ -3,7 +3,7 @@ package rlbotexample.app.physics.state_setter;
 import rlbot.gamestate.*;
 import rlbotexample.dynamic_objects.DataPacket;
 import rlbotexample.dynamic_objects.car.ExtendedCarData;
-import util.game_situation.GameStateHelper;
+import util.state_setting.GameStateHelper;
 
 public class CarStateSetter {
 

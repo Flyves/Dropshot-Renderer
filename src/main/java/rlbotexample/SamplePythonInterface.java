@@ -3,7 +3,7 @@ package rlbotexample;
 import rlbot.Bot;
 import rlbot.manager.BotManager;
 import rlbot.pyinterop.SocketServer;
-import rlbotexample.app.BossBattleBot;
+import rlbotexample.app.TileRendererBot;
 
 public class SamplePythonInterface extends SocketServer {
 
@@ -15,6 +15,6 @@ public class SamplePythonInterface extends SocketServer {
     }
 
     protected Bot initBot(int index, String botType, int team) {
-        return new SampleBot(index, new BossBattleBot(), botManager);
+        return new SampleBot(index, new TileRendererBot(), botManager);
     }
 }

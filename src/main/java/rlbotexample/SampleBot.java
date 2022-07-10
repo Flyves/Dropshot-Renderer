@@ -2,15 +2,10 @@ package rlbotexample;
 
 import rlbot.Bot;
 import rlbot.ControllerState;
-import rlbot.cppinterop.RLBotDll;
-import rlbot.cppinterop.RLBotInterfaceException;
 import rlbot.flat.GameTickPacket;
-import rlbot.flat.GoalInfo;
 import rlbot.manager.BotManager;
-import rlbotexample.app.physics.PhysicsOfBossBattle;
+import rlbotexample.app.physics.ModifiedPhysics;
 import rlbotexample.app.physics.state_setter.BallStateSetter;
-import rlbotexample.asset.animation.GameAnimations;
-import rlbotexample.asset.animation.animation.AnimationTasks;
 import rlbotexample.generic_bot.BotBehaviour;
 import rlbotexample.dynamic_objects.DataPacket;
 import rlbotexample.generic_bot.output.BotOutput;
@@ -99,13 +94,8 @@ public class SampleBot implements Bot {
     }
 
     private void applyPhysics(DataPacket input) {
-        PhysicsOfBossBattle.applyImpulses(input);
+        ModifiedPhysics.applyImpulses(input);
         BallStateSetter.handleBallState(input);
-    }
-
-    private void executeAnimationRequests(DataPacket input) {
-        AnimationTasks.stateSetAnimations(input);
-        AnimationTasks.clearFinishedTasks();
     }
 
     private void renderGui() {
@@ -117,14 +107,6 @@ public class SampleBot implements Bot {
     private void executeBot(DataPacket input, GameTickPacket packet) {
         botOutput = botBehaviour.processInput(input, packet);
         botBehaviour.updateGui(input, currentFps, averageFps, deltaTime);
-    }
-
-    private void handleInitialAnimationLoading() {
-        if(!isAnimationsLoaderStarted) {
-            new Thread(GameAnimations::loadAnimations).start();
-            GameAnimations.areLoading = true;
-            isAnimationsLoaderStarted = true;
-        }
     }
 
     private void fpsDataCalc() {

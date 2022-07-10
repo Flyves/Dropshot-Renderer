@@ -65,12 +65,13 @@ def retrieve_next_frame_index(scheduled):
     existing_indexes = []
     for element in os.listdir("C:/Users/Plads/Documents/GitHub/Flyves/BadAppleDropshot/src/main/python/AppMonitor/video_data"):
         split_indexes = element.split(".")
-        subframe_index = int(split_indexes[1])
-        image_index = int(split_indexes[0])
+        subframe_index = int(split_indexes[0])
+        image_index = int(split_indexes[1])
         existing_indexes.append((subframe_index, image_index))
+    existing_indexes = set(existing_indexes)
 
     for j in range(0, 17):
-        for i in range(0, 6660):
+        for i in range(0, 6571):
             if (j, i) not in existing_indexes:
                 best_frame = (j, i)
                 if best_frame not in scheduled:

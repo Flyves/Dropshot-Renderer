@@ -1,7 +1,7 @@
 package util.shapes;
 
 import rlbot.flat.BoxShape;
-import rlbotexample.dynamic_objects.car.orientation.Orientation;
+import util.math.orientation.Orientation;
 import util.math.vector.Vector3;
 
 public class HitBox {

@@ -1,9 +1,9 @@
 package util.resource_handling.cars;
 
-import rlbotexample.app.physics.PhysicsOfBossBattle;
+import rlbotexample.app.physics.ModifiedPhysics;
 import rlbotexample.dynamic_objects.DataPacket;
 import rlbotexample.dynamic_objects.car.ExtendedCarData;
-import rlbotexample.dynamic_objects.car.orientation.Orientation;
+import util.math.orientation.Orientation;
 import util.math.vector.OrientedPosition;
 import util.math.vector.Vector3;
 
@@ -114,7 +114,7 @@ public class CarResourceHandler {
         if(dereferencedCar == null) {
             return;
         }
-        PhysicsOfBossBattle.setZyxOrientedPosition(new OrientedPosition(new Vector3(30000, dereferencedCar.playerIndex*200, 50000), new Orientation()).toZyxOrientedPosition(), dereferencedCar);
+        ModifiedPhysics.setZyxOrientedPosition(new OrientedPosition(new Vector3(30000, dereferencedCar.playerIndex*200, 50000), new Orientation()).toZyxOrientedPosition(), dereferencedCar);
     }
 
     private static ExtendedCarData getRotatingFreeCarReference(final List<ExtendedCarData> freeCars) {
