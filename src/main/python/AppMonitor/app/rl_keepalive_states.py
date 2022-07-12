@@ -1,4 +1,5 @@
 import os
+import subprocess
 import time
 
 import win32api
@@ -16,7 +17,9 @@ config.read('userpaths.cfg')
 
 JAVA_BOT_LOCATION = "..\\..\\..\\..\\run-bot.bat"
 BAKKESMOD_LOCATION = config['PATHS']['bakkesmod_location']
-RLBOT_LOCATION = ".\\runpy.bat"
+RLBOT_ROOT_LOCATION = ".\\run.py"
+RLBOT_PYTHON_PATH = "C:\\Users\\Plads\\AppData\\Local\\RLBotGUIX\\Python37\\python.exe"
+RLBOT_PYTHON_LAUNCH_SCRIPT = ".\\runpy.bat"
 
 JAVA_BOT_APP_NAME = "Java Bot Handler"
 ANY_SHELL_APP_NAME = config['NAMES']['cmd_app_name']
@@ -25,8 +28,6 @@ BAKKESMOD_APP_NAME = config['NAMES']['bakkesmod_app_name']
 
 JAVA_SHELL_PROCESS_NAME = "cmd.exe"
 RLBOT_PROCESS_NAME = "RLBot.exe"
-
-print(ANY_SHELL_APP_NAME)
 
 
 class CloseEverything(State):
@@ -95,7 +96,11 @@ class StartRlBotRunPy(State):
         print('Launching RLBot')
 
     def exec(self, param):
-        os.startfile(RLBOT_LOCATION)
+        file = open('runpy.bat', 'w')
+        file.write('cd ..\\..\\..\\..\\' + '\n'
+                   + RLBOT_PYTHON_PATH + ' ' + RLBOT_ROOT_LOCATION)
+        file.close()
+        os.startfile(RLBOT_PYTHON_LAUNCH_SCRIPT)
 
     def next(self, param):
         return WaitForRocketLeagueToStart()
