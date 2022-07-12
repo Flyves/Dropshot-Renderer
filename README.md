@@ -1,4 +1,4 @@
-# Bad-Apple-Dropshot
+# Dropshot-Renderer
 
 A Rocket League bot that uses the RLBot framework to render images on the dropshot field. 
 
@@ -60,7 +60,7 @@ It also hides the interface with the "h" key, so you don't have to worry about t
 
 1) Clone this repository
 ```
-git clone https://github.com/Flyves/Bad-Apple-Dropshot
+git clone https://github.com/Flyves/Dropshot-Renderer
 ```
 
 2) In `./src/main/python/AppMonitor/userpaths.cfg`, you can set up file locations that are specific to your machine. 
