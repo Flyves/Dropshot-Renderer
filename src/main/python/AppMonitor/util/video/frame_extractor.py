@@ -37,7 +37,8 @@ def extract_frame(scheduled):
     image_data = ""
 
     cap = cv2.VideoCapture("../../resources/video/bad.mp4")
-    frame_index = retrieve_next_frame_index(scheduled)
+    amount_of_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    frame_index = retrieve_next_frame_index(scheduled, amount_of_frames)
     cap.set(1, frame_index[1])
     res, frame = cap.read()
 
@@ -59,7 +60,7 @@ def extract_frame(scheduled):
     return image_data, frame_index
 
 
-def retrieve_next_frame_index(scheduled):
+def retrieve_next_frame_index(scheduled, amount_of_frames):
     best_frame = (-1, -1)
 
     existing_indexes = []
@@ -71,7 +72,7 @@ def retrieve_next_frame_index(scheduled):
     existing_indexes = set(existing_indexes)
 
     for j in range(17):
-        for i in range(6571):
+        for i in range(amount_of_frames):
             if (j, i) not in existing_indexes:
                 best_frame = (j, i)
                 if best_frame not in scheduled:

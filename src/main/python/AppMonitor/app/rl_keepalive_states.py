@@ -15,13 +15,13 @@ config = configparser.ConfigParser()
 config.read('userpaths.cfg')
 
 JAVA_BOT_LOCATION = "..\\..\\..\\..\\run-bot.bat"
-BAKKESMOD_LOCATION = config['PATHS']['Bakkesmod_Location']
+BAKKESMOD_LOCATION = config['PATHS']['bakkesmod_location']
 RLBOT_LOCATION = ".\\runpy.bat"
 
 JAVA_BOT_APP_NAME = "Java Bot Handler"
-ANY_SHELL_APP_NAME = config['NAMES']['Cmd_App_Name']
-ROCKET_LEAGUE_APP_NAME = config['NAMES']['Rocket_League_App_Name']
-BAKKESMOD_APP_NAME = config['NAMES']['Bakkesmod_App_Name']
+ANY_SHELL_APP_NAME = config['NAMES']['cmd_app_name']
+ROCKET_LEAGUE_APP_NAME = config['NAMES']['rocket_league_app_name']
+BAKKESMOD_APP_NAME = config['NAMES']['bakkesmod_app_name']
 
 JAVA_SHELL_PROCESS_NAME = "cmd.exe"
 RLBOT_PROCESS_NAME = "RLBot.exe"
