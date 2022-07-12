@@ -51,10 +51,9 @@ It also hides the interface with the "h" key, so you don't have to worry about t
 
 * Rocket League
 * Bakkesmod (further manual installation steps are needed, see [Installing](#Installing))
-* RLBot framework
+* RLBot framework (with the python 3.7 installation)
 * Windows
 * Java 8 JDK or newer
-* Python 3.7 or newer
 
 ### Installing
 
@@ -76,7 +75,7 @@ Then, launch `Rocket League` and `Bakkesmod` manually. Add these 2 bindings to `
 ### Executing program
 
 1) Place a black and white version of the video you want to render in `./src/main/resources/video/`. Make sure it is called `bad.mp4`. 
-2) Run the `./src/main/python/AppMonitor/main.py` script in administrator. 
+2) Run the `./src/main/python/AppMonitor/main.py` script in administrator. Make sure you are using the python version from the RLBot framework (should be python 3.7). 
 3) Once the rendering is done, you can use something like [ffmpeg](https://ffmpeg.org/) to create a video from images. 
 
 > Important notice!  
