@@ -16,12 +16,12 @@ def outOfImageRange(pix, size):
 
 
 def compute_subframe_size(image_dimensions):
-    scale = 0.309259259  # 1002 / 3240
-    height = image_dimensions[1] * scale
-    adj = height / 2
+    y_scale = 0.309259259  # 1002 / 3240
+    subframe_height = image_dimensions[1] * y_scale
+    adj = subframe_height / 2
     hyp = adj / math.cos(math.pi / 6)
-    width = hyp * 2
-    return width, height
+    subframe_width = hyp * 2
+    return subframe_width, subframe_height
 
 
 def compute_boundaries(subframe_index, image_dimensions):
@@ -36,7 +36,7 @@ def compute_boundaries(subframe_index, image_dimensions):
 def extract_frame(scheduled):
     image_data = ""
 
-    cap = cv2.VideoCapture("C:/Users/Plads/Documents/GitHub/Flyves/BadApple/src/main/python/video_decoder/bad.mp4")
+    cap = cv2.VideoCapture("../../resources/video/bad.mp4")
     frame_index = retrieve_next_frame_index(scheduled)
     cap.set(1, frame_index[1])
     res, frame = cap.read()
@@ -63,15 +63,15 @@ def retrieve_next_frame_index(scheduled):
     best_frame = (-1, -1)
 
     existing_indexes = []
-    for element in os.listdir("C:/Users/Plads/Documents/GitHub/Flyves/BadAppleDropshot/src/main/python/AppMonitor/video_data"):
+    for element in os.listdir("./video_data"):
         split_indexes = element.split(".")
         subframe_index = int(split_indexes[0])
         image_index = int(split_indexes[1])
         existing_indexes.append((subframe_index, image_index))
     existing_indexes = set(existing_indexes)
 
-    for j in range(0, 17):
-        for i in range(0, 6571):
+    for j in range(17):
+        for i in range(6571):
             if (j, i) not in existing_indexes:
                 best_frame = (j, i)
                 if best_frame not in scheduled:

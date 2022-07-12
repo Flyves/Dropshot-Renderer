@@ -9,17 +9,24 @@ from app.process_util import kill_app_with_name, kill_process
 from app.window_process_monitor import WindowMonitor
 from util.state_machine.state_machine import State
 
+import configparser
+
+config = configparser.ConfigParser()
+config.read('userpaths.cfg')
+
 JAVA_BOT_LOCATION = "..\\..\\..\\..\\run-bot.bat"
-BAKKESMOD_LOCATION = "C:\\Program Files\\BakkesMod\\BakkesMod.exe"
+BAKKESMOD_LOCATION = config['PATHS']['Bakkesmod_Location']
 RLBOT_LOCATION = ".\\runpy.bat"
 
 JAVA_BOT_APP_NAME = "Java Bot Handler"
-ANY_SHELL_APP_NAME = "C:\\Windows\\system32\\cmd.exe"
-ROCKET_LEAGUE_APP_NAME = "Rocket League (64-bit, DX11, Cooked)"
-BAKKESMOD_APP_NAME = "BakkesModInjectorCpp"
+ANY_SHELL_APP_NAME = config['NAMES']['Cmd_App_Name']
+ROCKET_LEAGUE_APP_NAME = config['NAMES']['Rocket_League_App_Name']
+BAKKESMOD_APP_NAME = config['NAMES']['Bakkesmod_App_Name']
 
 JAVA_SHELL_PROCESS_NAME = "cmd.exe"
 RLBOT_PROCESS_NAME = "RLBot.exe"
+
+print(ANY_SHELL_APP_NAME)
 
 
 class CloseEverything(State):
