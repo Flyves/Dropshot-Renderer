@@ -43,7 +43,10 @@ def extract_frame(scheduled):
     cap.set(1, frame_index[1])
     res, frame = cap.read()
 
-    height, width, channels = frame.shape
+    try:
+        height, width, channels = frame.shape
+    except Exception:
+        raise ValueError('Missing video!')
 
     lower_bound, upper_bound = compute_boundaries(frame_index[0], (width, height))
     for y in range(int(lower_bound[1]), int(upper_bound[1])):
