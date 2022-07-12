@@ -102,7 +102,7 @@ class StartRlBotRunPy(State):
 
 
 class WaitForRocketLeagueToStart(State):
-    TIMEOUT_TIME = 60
+    TIMEOUT_TIME = float(config['TIMEOUTS']['rocket_league_startup'])
 
     def __init__(self):
         self.end_time = time.time() + WaitForRocketLeagueToStart.TIMEOUT_TIME
