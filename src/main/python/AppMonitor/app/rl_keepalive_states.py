@@ -18,7 +18,7 @@ config.read('userpaths.cfg')
 JAVA_BOT_LOCATION = "..\\..\\..\\..\\run-bot.bat"
 BAKKESMOD_LOCATION = config['PATHS']['bakkesmod_location']
 RLBOT_ROOT_LOCATION = ".\\run.py"
-RLBOT_PYTHON_PATH = "C:\\Users\\Plads\\AppData\\Local\\RLBotGUIX\\Python37\\python.exe"
+RLBOT_PYTHON_PATH = config['PATHS']['rlbot_python_location']
 RLBOT_PYTHON_LAUNCH_SCRIPT = ".\\runpy.bat"
 
 JAVA_BOT_APP_NAME = "Java Bot Handler"
