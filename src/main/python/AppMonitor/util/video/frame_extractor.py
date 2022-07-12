@@ -3,7 +3,7 @@ import os
 
 import cv2
 
-
+# the positions of each hexagonal subframe on the image to be rendered
 subframe_positions = [(0.5, 0.16666666), (0.5, 0.5), (0.5, 0.83333333),
                       (0.66238125, 0), (0.66238125, 0.33333333), (0.66238125, 0.66666666), (0.66238125, 1),
                       (0.33761875, 0), (0.33761875, 0.33333333), (0.33761875, 0.66666666), (0.33761875, 1),
@@ -16,6 +16,7 @@ def outOfImageRange(pix, size):
 
 
 def compute_subframe_size(image_dimensions):
+    # calculating the height and width for each hexagon subframe in the image
     y_scale = 0.309259259  # 1002 / 3240
     subframe_height = image_dimensions[1] * y_scale
     adj = subframe_height / 2
