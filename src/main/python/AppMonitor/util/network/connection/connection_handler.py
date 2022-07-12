@@ -9,6 +9,13 @@ from PIL import Image
 
 from util.video.frame_extractor import extract_frame
 
+import configparser
+
+config = configparser.ConfigParser()
+config.read('userpaths.cfg')
+
+ROCKET_LEAGUE_APP_NAME = config['NAMES']['rocket_league_app_name']
+
 
 class ServerHandler:
     def __init__(self, logger: Logger):
@@ -54,7 +61,7 @@ class ServerHandler:
     # https://stackoverflow.com/questions/19695214/screenshot-of-inactive-window-printwindow-win32gui
     # small modifications were made
     def take_screenshot(self):
-        hwnd = win32gui.FindWindow(None, 'Rocket League (64-bit, DX11, Cooked)')
+        hwnd = win32gui.FindWindow(None, ROCKET_LEAGUE_APP_NAME)
         left, top, right, bot = win32gui.GetClientRect(hwnd)
         w = right - left
         h = bot - top

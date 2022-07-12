@@ -65,12 +65,18 @@ def retrieve_next_frame_index(scheduled, amount_of_frames):
     best_frame = (-1, -1)
 
     existing_indexes = []
-    for element in os.listdir("./video_data"):
-        split_indexes = element.split(".")
-        subframe_index = int(split_indexes[0])
-        image_index = int(split_indexes[1])
-        existing_indexes.append((subframe_index, image_index))
-    existing_indexes = set(existing_indexes)
+    try:
+        for element in os.listdir("./video_data"):
+            split_indexes = element.split(".")
+            subframe_index = int(split_indexes[0])
+            image_index = int(split_indexes[1])
+            existing_indexes.append((subframe_index, image_index))
+        existing_indexes = set(existing_indexes)
+    except Exception:
+        try:
+            os.mkdir('./video_data')
+        except FileExistsError:
+            pass
 
     for j in range(len(subframe_positions)):
         for i in range(amount_of_frames):

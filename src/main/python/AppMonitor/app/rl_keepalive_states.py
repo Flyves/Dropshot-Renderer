@@ -96,14 +96,17 @@ class StartRlBotRunPy(State):
         print('Launching RLBot')
 
     def exec(self, param):
-        file = open('runpy.bat', 'w')
-        file.write('cd ..\\..\\..\\..\\' + '\n'
-                   + RLBOT_PYTHON_PATH + ' ' + RLBOT_ROOT_LOCATION)
-        file.close()
+        self.overrideRLBotRunScript()
         os.startfile(RLBOT_PYTHON_LAUNCH_SCRIPT)
 
     def next(self, param):
         return WaitForRocketLeagueToStart()
+
+    def overrideRLBotRunScript(self):
+        file = open('runpy.bat', 'w')
+        file.write('cd ..\\..\\..\\..\\' + '\n'
+                   + RLBOT_PYTHON_PATH + ' ' + RLBOT_ROOT_LOCATION)
+        file.close()
 
 
 class WaitForRocketLeagueToStart(State):
