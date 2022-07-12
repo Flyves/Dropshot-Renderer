@@ -64,7 +64,6 @@ git clone https://github.com/Flyves/Dropshot-Renderer
 
 2) In `./src/main/python/AppMonitor/userpaths.cfg`, you can set up file locations that are specific to your machine. 
 It's important to set up these paths properly, because this is what the `Python Monitor` uses to relaunch everything in case the game crashes.  
-If they are not set up properly, you will get an error in the python console. 
 
 3) Install [this bakkesmod plugin](https://bakkesplugins.com/plugins/view/107).  
 Then, launch `Rocket League` and `Bakkesmod` manually. Add these 2 bindings to `Bakkesmod`:  
