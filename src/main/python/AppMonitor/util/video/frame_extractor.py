@@ -71,7 +71,7 @@ def retrieve_next_frame_index(scheduled, amount_of_frames):
         existing_indexes.append((subframe_index, image_index))
     existing_indexes = set(existing_indexes)
 
-    for j in range(17):
+    for j in range(len(subframe_positions)):
         for i in range(amount_of_frames):
             if (j, i) not in existing_indexes:
                 best_frame = (j, i)
