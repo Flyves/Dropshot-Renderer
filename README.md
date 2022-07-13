@@ -51,10 +51,9 @@ It also hides the interface with the "h" key, so you don't have to worry about t
 
 * Rocket League
 * Bakkesmod (further manual installation steps are needed, see [Installing](#Installing))
-* RLBot framework
+* RLBot framework (with the python 3.7 installation)
 * Windows
 * Java 8 JDK or newer
-* Python 3.7 or newer
 
 ### Installing
 
@@ -65,7 +64,6 @@ git clone https://github.com/Flyves/Dropshot-Renderer
 
 2) In `./src/main/python/AppMonitor/userpaths.cfg`, you can set up file locations that are specific to your machine. 
 It's important to set up these paths properly, because this is what the `Python Monitor` uses to relaunch everything in case the game crashes.  
-If they are not set up properly, you will get an error in the python console. 
 
 3) Install [this bakkesmod plugin](https://bakkesplugins.com/plugins/view/107).  
 Then, launch `Rocket League` and `Bakkesmod` manually. Add these 2 bindings to `Bakkesmod`:  
@@ -75,8 +73,8 @@ Then, launch `Rocket League` and `Bakkesmod` manually. Add these 2 bindings to `
 
 ### Executing program
 
-1) Place a black and white version of the video you want to render in `./src/main/resources/video/`. Make sure it is called `bad.mp4`. 
-2) Run the `./src/main/python/AppMonitor/main.py` script in administrator. 
+1) Place a black and white version of the video you want to render in `./src/main/resources/video/`. By default, the `Python Monitor` expects the name to be `bad.mp4`, but you can change it in `./src/main/python/AppMonitor/userpaths.cfg`. 
+2) Run the `./src/main/python/AppMonitor/main.py` script in administrator. Make sure you are using the python installation that comes with the RLBot framework. 
 3) Once the rendering is done, you can use something like [ffmpeg](https://ffmpeg.org/) to create a video from images. 
 
 > Important notice!  
