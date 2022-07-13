@@ -73,7 +73,7 @@ Then, launch `Rocket League` and `Bakkesmod` manually. Add these 2 bindings to `
 
 ### Executing program
 
-1) Place a black and white version of the video you want to render in `./src/main/resources/video/`. Make sure it is called `bad.mp4`. 
+1) Place a black and white version of the video you want to render in `./src/main/resources/video/`. By default, the `Python Monitor` expects the name to be `bad.mp4`, but you can change it in `./src/main/python/AppMonitor/userpaths.cfg`. 
 2) Run the `./src/main/python/AppMonitor/main.py` script in administrator. Make sure you are using the python installation that comes with the RLBot framework. 
 3) Once the rendering is done, you can use something like [ffmpeg](https://ffmpeg.org/) to create a video from images. 
 
