@@ -3,6 +3,13 @@ import os
 
 import cv2
 
+import configparser
+
+config = configparser.ConfigParser()
+config.read('userpaths.cfg')
+
+VIDEO_FILE_NAME = config['NAMES']['video_file_name']
+
 # the positions of each hexagonal subframe on the image to be rendered
 subframe_positions = [(0.5, 0.16666666), (0.5, 0.5), (0.5, 0.83333333),
                       (0.66238125, 0), (0.66238125, 0.33333333), (0.66238125, 0.66666666), (0.66238125, 1),
@@ -37,7 +44,7 @@ def compute_boundaries(subframe_index, image_dimensions):
 def extract_frame(scheduled):
     image_data = ""
 
-    cap = cv2.VideoCapture("../../resources/video/bad.mp4")
+    cap = cv2.VideoCapture("../../resources/video/" + VIDEO_FILE_NAME)
     amount_of_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     frame_index = retrieve_next_frame_index(scheduled, amount_of_frames)
     cap.set(1, frame_index[1])
