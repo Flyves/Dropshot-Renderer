@@ -82,7 +82,7 @@ Then, launch `Rocket League` and `Bakkesmod` manually. Add these 2 bindings to `
 > Be aware that the current version of the program is set up in a way that it splits each frame of the video into 17 seperate parts, tiled hexagonaly.  
 I did this because I wanted a better tile resolution out of the renderer. 
 If you want to render each entire frame on the field instead of 17 individual parts, you will need to tinker with this script `./src/main/python/AppMonitor/util/video/frame_extractor.py`. 
-This is where the frame is seperated into 17 parts.  
+This is where the frame is separated into 17 parts.  
 
 
 ### Contact
